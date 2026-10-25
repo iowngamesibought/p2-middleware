@@ -1,0 +1,35 @@
+{
+  "version": "0.1.8",
+  "recorded_utc": "2026-10-25T16:13:07.741066+00:00",
+  "local_app": "C:/Users/24548/AppData/Local/Programs/P2Middleware",
+  "deployment": "Copied exact verified development bundle to local disk; all eight manifest file identities matched. Added Start menu shortcut. No binaries changed.",
+  "network_share_launch": "Start-Process stalled before an app process appeared; scoped launching shell stopped. Same verified app started immediately from local disk. Root cause of share launch not proven.",
+  "startup": {
+    "user_report": "Ready",
+    "ui_observed": "Network cleanup complete. Ready for a PS3 address.",
+    "gui_pid": 5160,
+    "helper_pid": 27632,
+    "result": "passed startup cleanup and idle readiness; original protected record contents not inspected"
+  },
+  "close": {
+    "action": "normal Alt+F4 on uniquely selected local app window",
+    "gui_and_helper_exited": true,
+    "owned_firewall_rules_after": 0,
+    "interface": 3,
+    "forwarding_after": "Disabled",
+    "result": "passed idle close; no active native gateway in this test"
+  },
+  "driver_review": {
+    "latest_release": "v2.2.2",
+    "issue": "https://github.com/basil00/WinDivert/issues/411",
+    "status": "open; no resolution observed",
+    "local_detection": "selected project detections still identify WinDivert archive, not app",
+    "artifact_restored_downloaded_or_loaded": false
+  },
+  "limitations": [
+    "No active-session Windows gateway traffic or co-op acceptance",
+    "Driver approval still blocked",
+    "No Windows protection changes",
+    "No Steam approval or PS3 activity required"
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "version": "0.1.5",
+  "recorded_utc": "2026-10-25T15:32:10.310691+00:00",
+  "host": "Windows 11 x64 build26300",
+  "checks": {
+    "workspace_tests_passed": 78,
+    "routing_model_tests_passed": 11,
+    "real_non_admin_helper_check_setup_rejection": "administrator_required before host mutation",
+    "setup_check_fake_host": "apply/readback/restore passed; preexisting forwarding preserved; driver preflight/capture not called",
+    "cleanup_readback_failure": "record retained when operations return success but fail to restore state",
+    "clippy_all_targets_deny_warnings": "passed",
+    "format_check": "passed",
+    "release_build_locked": "passed",
+    "gui_smoke_exit_code": 0,
+    "remaining_processes_from_release_build_folder": 0,
+    "helper_status": {
+      "driver_approved": false,
+      "elevated": false,
+      "mutations": false
+    },
+    "native_run": {
+      "event": "driver_unapproved",
+      "exit_code": 1
+    },
+    "protected_store_exists_after_tests": false
+  },
+  "limitations": [
+    "User-run elevated CheckSetup still pending; no actual forwarding/firewall/ACL mutation performed",
+    "No driver approval or load; prior detection unresolved",
+    "No native network traffic, Steam approval or PS3 RUN",
+    "CheckSetup is a mutating diagnostic, not the read-only Probe",
+    "Windows 10, signing and protected installation pending"
+  ],
+  "artifacts": [
+    {
+      "file": "p2-middleware.exe",
+      "bytes": 7810560,
+      "sha256": "eacd4ca5861a91e1f886252d406c75d87a67ec5a34f1ca1a9de1bd2c29e1644a"
+    },
+    {
+      "file": "p2-bridge.exe",
+      "bytes": 2603520,
+      "sha256": "a94fbdd69c2399a7bce8950a4a838a49317dbd58ff9129e3dbc852152ec35f65"
+    },
+    {
+      "file": "p2-route.exe",
+      "bytes": 875008,
+      "sha256": "4a54f5769a0c44edef5b4f8b9deed218453db3ed53f4cadb1d4cecc3ad0086a7"
+    }
+  ],
+  "source_identity": [
+    {
+      "path": "src/approval.rs",
+      "sha256": "663b0496d964382dc10840f952a7260ed3ee781b5024427225d1f914b3c36f45"
+    },
+    {
+      "path": "src/bin/p2-route.rs",
+      "sha256": "2cd64336f2ce57e73f537da3b78284be6b6b294924536ebae378c3659c60caca"
+    },
+    {
+      "path": "src/bridge.rs",
+      "sha256": "2ef1c713d205440690eeb0f0c2fc3fe26457741ba172a74a64ef96fe18fb6372"
+    },
+    {
+      "path": "src/config.rs",
+      "sha256": "0ee051162cb3ee0144bf356933104abb151a86d4d15d2dbe0c69e0ed4697cd7f"
+    },
+    {
+      "path": "src/control.rs",
+      "sha256": "83ee04078a4c24f56df31fe4f98fcc38334e7d297715b45cda8f5415d1677282"
+    },
+    {
+      "path": "src/driver_review.rs",
+      "sha256": "52f57a340453a530174cabab291c6431c2d2c6ea2a21e4891dff3f75d93b79e1"
+    },
+    {
+      "path": "src/elevation.rs",
+      "sha256": "d989b9b7393029107049c8388939cd1bf0b46a7c462dadb9601879a863457793"
+    },
+    {
+      "path": "src/lib.rs",
+      "sha256": "e3bb637135018260ca5df53f7778840657b08d9042a7ab6b346542a596d80ea4"
+    },
+    {
+      "path": "src/main.rs",
+      "sha256": "4475435b79b104be21bd466d724b9678827ea7598064096cf44a92b61463aaf1"
+    },
+    {
+      "path": "src/network.rs",
+      "sha256": "0adea2a4c76d91562ab91bee85298d6599a2350c11043a734b49ea7ee60d6abf"
+    },
+    {
+      "path": "src/packet.rs",
+      "sha256": "b44666f232fe5ce5aa19e3bda4fde66f518ef22f587a130fcab0426ca0c9f0a6"
+    },
+    {
+      "path": "src/preflight.rs",
+      "sha256": "fcc461cdeae90223447cfc483bff0d075d64bddbaf30cf046933196d28a13d93"
+    },
+    {
+      "path": "src/route_client.rs",
+      "sha256": "9baa37ebb48e829a5596687ffbee3a8b6db231c9b24aad4bce192335f4a173dd"
+    },
+    {
+      "path": "src/routing.rs",
+      "sha256": "b209f6746d9feb817056d14f630dea4f5bc3b1ffaa97c81dc5fd1c232a10f857"
+    },
+    {
+      "path": "src/windivert.rs",
+      "sha256": "5ed505edab7ea5d3086920bc47d5e077774454b3b51d7221ee1459cfb1fb1fae"
+    },
+    {
+      "path": "src/windows_host.ps1",
+      "sha256": "c5087cfb40497443e37973fabf60654d9f1465e0d7c6d2fcd03c8ad61fab94b3"
+    },
+    {
+      "path": "src/windows_host.rs",
+      "sha256": "2b2daa972a584921e681db01cb64fec757be8576d8551a4199f440d818a14422"
+    },
+    {
+      "path": "tests/helper_ipc.rs",
+      "sha256": "349e342161c7cd9d2526a19b7d154ed77d2ab360cfea5eb2866983ccc65aee8c"
+    }
+  ],
+  "cargo_lock_sha256": "dd9f887b333350ae80eba60f1cc155419051b0ba6af112bebc668aa920214c24"
+}

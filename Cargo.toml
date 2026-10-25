@@ -1,0 +1,39 @@
+[workspace]
+members = [".", "crates/bridge-core"]
+resolver = "2"
+
+[package]
+name = "p2-middleware"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.88"
+publish = false
+description = "Local desktop gateway for stock console co-op"
+
+[dependencies]
+eframe = { version = "=0.33.3", default-features = false, features = ["default_fonts", "glow", "accesskit"] }
+p2-bridge-core = { path = "crates/bridge-core" }
+qrcode = { version = "=0.14.1", default-features = false }
+serde = { version = "=1.0.228", features = ["derive"] }
+serde_json = "=1.0.145"
+toml = "=0.9.8"
+zeroize = "=1.9.0"
+base64 = "=0.22.1"
+rand = "=0.8.5"
+tokio = { version = "=1.54.1", features = ["rt", "net", "io-util", "time"] }
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "=0.61.2", features = ["Win32_NetworkManagement_IpHelper", "Win32_NetworkManagement_Ndis", "Win32_Networking_WinSock", "Win32_Foundation", "Win32_System_JobObjects", "Win32_System_Threading", "Win32_Security", "Win32_Storage_FileSystem", "Win32_System_Pipes", "Win32_Security_Authorization", "Win32_UI_Shell", "Win32_UI_WindowsAndMessaging", "Win32_System_Com", "Win32_System_Registry", "Win32_System_SystemInformation"] }
+
+[[bin]]
+name = "p2-middleware"
+path = "src/main.rs"
+
+[[bin]]
+name = "p2-route"
+path = "src/bin/p2-route.rs"
+
+[profile.release]
+lto = "thin"
+strip = "debuginfo"
+

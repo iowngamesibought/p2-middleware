@@ -1,0 +1,64 @@
+{
+  "version": "0.1.9",
+  "recorded_at": "2026-10-26T00:32:52.9904002+08:00",
+  "kind": "bounded Windows transport experiments, not Portal 2 RUN",
+  "local_probe": {
+    "output": "Temporary address and local TCP exchange passed; address removed and network configuration unchanged.",
+    "exit_code": 0,
+    "address": "192.0.2.254/32",
+    "lifetime_seconds": 45,
+    "result": "passed"
+  },
+  "lan_probe": {
+    "gateway_restoration": "User confirmed: restored PS3 gateway to default",
+    "before_after_network_snapshots_equal": true,
+    "user_report": "It shows p2 native LAN path works",
+    "exit_code": 0,
+    "endpoint": "http://192.0.2.254:27017/",
+    "console": "10.0.0.220",
+    "helper_output": "PS3 LAN connection received. Test address and firewall rule removed.",
+    "temporary_gateway": "10.0.0.100",
+    "address_lifetime_seconds": 150,
+    "listener_seconds": 100,
+    "result": "passed"
+  },
+  "independent_cleanup": {
+    "observed_at": "2026-10-26T00:31:26.3240455+08:00",
+    "test_alias_count": 0,
+    "dhcp": "Disabled",
+    "forwarding": "Disabled",
+    "interface": 3,
+    "helper_process_count": 0,
+    "owned_firewall_rule_count": 0
+  },
+  "validation": {
+    "live_local_tcp": "passed",
+    "live_ps3_http": "passed",
+    "workspace_tests_passed": 87,
+    "release_build": "passed",
+    "clippy": "passed with warnings denied"
+  },
+  "binaries": [
+    {
+      "name": "p2-network-check.exe",
+      "sha256": "a8520c39b9c7e078e0307bbafe443ddf22369581e228a2e548e5b6e8015a4d95"
+    },
+    {
+      "name": "p2-route.exe",
+      "sha256": "8a858e014101b2098f506c72cf49b234f9e28537d79b4d4d6779db971aa849e1"
+    }
+  ],
+  "installed_app": "0.1.8 unchanged",
+  "limitations": [
+    "Steam bridge integration and game handshake pending",
+    "Ordinary PSN transit and co-op not tested",
+    "DHCP-enabled adapter not tested",
+    "Crash expiry/recovery not accepted",
+    "UDP and Windows 10 untested"
+  ],
+  "security": {
+    "protection_disabled": false,
+    "steam_credentials_used": false,
+    "driver_loaded": false
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "version": "0.1.6",
+  "recorded_utc": "2026-10-25T15:37:55.280914+00:00",
+  "host": "Windows 11 x64 build26300",
+  "checks": {
+    "workspace_tests_passed": 79,
+    "read_only_absent_firewall_rule_regression": "passed; explicit JSON null decodes as None",
+    "exact_system_powershell_replay": {
+      "exit_code": 0,
+      "stdout": "null"
+    },
+    "clippy_all_targets_deny_warnings": "passed",
+    "format_check": "passed",
+    "release_build_locked": "passed",
+    "gui_smoke_exit_code": 0,
+    "remaining_processes_from_release_build_folder": 0,
+    "helper_status": {
+      "driver_approved": false,
+      "elevated": false,
+      "mutations": false
+    }
+  },
+  "limitations": [
+    "Elevated full setup/restore retry pending user",
+    "Failure occurred before network mutation; protected store directory exists from user attempt",
+    "No new privileged network changes, driver load, Steam approval or PS3 RUN",
+    "Driver approval remains empty; prior Defender block unchanged"
+  ],
+  "artifacts": [
+    {
+      "file": "p2-middleware.exe",
+      "bytes": 7811072,
+      "sha256": "5f7c97a00fc468267f51e8022842a95c02ac1e22e72afca40b28b3f61d3ffad1"
+    },
+    {
+      "file": "p2-bridge.exe",
+      "bytes": 2603520,
+      "sha256": "a94fbdd69c2399a7bce8950a4a838a49317dbd58ff9129e3dbc852152ec35f65"
+    },
+    {
+      "file": "p2-route.exe",
+      "bytes": 875520,
+      "sha256": "ae78831dce1681101ff26cdb14c365976cc7c947f660b45d101ce20ebefdeddd"
+    }
+  ],
+  "source_identity": [
+    {
+      "path": "src/approval.rs",
+      "sha256": "663b0496d964382dc10840f952a7260ed3ee781b5024427225d1f914b3c36f45"
+    },
+    {
+      "path": "src/bin/p2-route.rs",
+      "sha256": "2cd64336f2ce57e73f537da3b78284be6b6b294924536ebae378c3659c60caca"
+    },
+    {
+      "path": "src/bridge.rs",
+      "sha256": "2ef1c713d205440690eeb0f0c2fc3fe26457741ba172a74a64ef96fe18fb6372"
+    },
+    {
+      "path": "src/config.rs",
+      "sha256": "0ee051162cb3ee0144bf356933104abb151a86d4d15d2dbe0c69e0ed4697cd7f"
+    },
+    {
+      "path": "src/control.rs",
+      "sha256": "83ee04078a4c24f56df31fe4f98fcc38334e7d297715b45cda8f5415d1677282"
+    },
+    {
+      "path": "src/driver_review.rs",
+      "sha256": "52f57a340453a530174cabab291c6431c2d2c6ea2a21e4891dff3f75d93b79e1"
+    },
+    {
+      "path": "src/elevation.rs",
+      "sha256": "d989b9b7393029107049c8388939cd1bf0b46a7c462dadb9601879a863457793"
+    },
+    {
+      "path": "src/lib.rs",
+      "sha256": "e3bb637135018260ca5df53f7778840657b08d9042a7ab6b346542a596d80ea4"
+    },
+    {
+      "path": "src/main.rs",
+      "sha256": "4475435b79b104be21bd466d724b9678827ea7598064096cf44a92b61463aaf1"
+    },
+    {
+      "path": "src/network.rs",
+      "sha256": "0adea2a4c76d91562ab91bee85298d6599a2350c11043a734b49ea7ee60d6abf"
+    },
+    {
+      "path": "src/packet.rs",
+      "sha256": "b44666f232fe5ce5aa19e3bda4fde66f518ef22f587a130fcab0426ca0c9f0a6"
+    },
+    {
+      "path": "src/preflight.rs",
+      "sha256": "fcc461cdeae90223447cfc483bff0d075d64bddbaf30cf046933196d28a13d93"
+    },
+    {
+      "path": "src/route_client.rs",
+      "sha256": "9baa37ebb48e829a5596687ffbee3a8b6db231c9b24aad4bce192335f4a173dd"
+    },
+    {
+      "path": "src/routing.rs",
+      "sha256": "b209f6746d9feb817056d14f630dea4f5bc3b1ffaa97c81dc5fd1c232a10f857"
+    },
+    {
+      "path": "src/windivert.rs",
+      "sha256": "5ed505edab7ea5d3086920bc47d5e077774454b3b51d7221ee1459cfb1fb1fae"
+    },
+    {
+      "path": "src/windows_host.ps1",
+      "sha256": "689a1865dadbb2185112b1ba17944f4cdf8c156f12477c04ead9731da436a152"
+    },
+    {
+      "path": "src/windows_host.rs",
+      "sha256": "5f5d52eb30782b6636f6de53f15f70adfedb0dc00e8b5708da7cb622381d6d26"
+    },
+    {
+      "path": "tests/helper_ipc.rs",
+      "sha256": "349e342161c7cd9d2526a19b7d154ed77d2ab360cfea5eb2866983ccc65aee8c"
+    }
+  ],
+  "cargo_lock_sha256": "56f2e857384ae1e3128f3952c70fb47afc73d760373c49eecc35c9da6f2b68da"
+}

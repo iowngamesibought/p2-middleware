@@ -1,0 +1,7 @@
+# Non-secret settings only. The desktop stores these in LOCALAPPDATA/P2Middleware.
+ps3_ip = "192.168.1.50"
+pc_ip = "192.168.1.20"
+router_ip = "192.168.1.1"
+prefix_len = 24
+crossplay = true
+

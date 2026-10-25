@@ -1,0 +1,42 @@
+{
+  "recorded_utc": "2026-10-25T15:17:13.082754+00:00",
+  "release": {
+    "api": "https://api.github.com/repos/basil00/WinDivert/releases/latest",
+    "tag": "v2.2.2",
+    "published_at": "2022-09-21T00:09:43Z",
+    "asset": "WinDivert-2.2.2-A.zip",
+    "size": 405137,
+    "digest": null
+  },
+  "upstream_issue": {
+    "url": "https://github.com/basil00/WinDivert/issues/411",
+    "state": "open",
+    "comments": 1,
+    "comment_author_association": "NONE",
+    "maintainer_resolution_observed": false
+  },
+  "local_defender": {
+    "threat_id": 451610,
+    "threat_name": "Misleading:Win32/Malgent!AMTB",
+    "is_active": false,
+    "did_threat_execute": false,
+    "detection_times_local": [
+      "2026-10-25T22:19:01.397+08:00",
+      "2026-10-25T22:19:09.980+08:00"
+    ],
+    "action_success": true,
+    "selected_resource": "project runtime/vendor/WinDivert-2.2.2-A.zip",
+    "archive_hash_verified": false,
+    "triggering_member_known": false
+  },
+  "actions": {
+    "metadata_only": true,
+    "archive_read_retry": false,
+    "alternate_download": false,
+    "quarantine_restore": false,
+    "exclusion_or_security_change": false,
+    "sample_uploaded": false,
+    "maintainer_contacted": false,
+    "driver_loaded": false
+  }
+}

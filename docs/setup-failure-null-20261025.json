@@ -1,0 +1,26 @@
+{
+  "recorded_utc": "2026-10-25T15:36:55.330053+00:00",
+  "failed_build": "0.1.5",
+  "user_activity": [
+    "Windows setup test did not finish successfully. Check Activity for any recovery needed.",
+    "Windows could not inspect firewall rule ownership. No new network setup was started."
+  ],
+  "diagnosis": "Absent owned firewall rule returns PowerShell null; Windows PowerShell 5.1 ConvertTo-Json emits empty stdout for top-level null. Rust JSON decoding incorrectly reports HostOperation(get_rule).",
+  "reproduction": {
+    "unpatched_get_rule_exit": 0,
+    "unpatched_get_rule_stdout": "",
+    "isolated_convert_null_stdout": "",
+    "patched_get_rule_exit": 0,
+    "patched_get_rule_stdout": "null"
+  },
+  "observed_host_state": {
+    "protected_directory_exists": true,
+    "protected_directory_contents": "not readable by unelevated observer; not modified",
+    "selected_lan_interface_index": 3,
+    "forwarding": "Disabled",
+    "route_helper_running": false
+  },
+  "execution_boundary": "The reported get_rule error occurs after protected store open and interface checks, but before write_journal/add_rule/forwarding; no routing rollback is required for this attempt based on that execution path. The protected store directory/lock may remain.",
+  "fix": "Explicit literal JSON null for null result; real read-only missing-rule regression test",
+  "live_retry": "pending user test of 0.1.6; no driver or PS3 test"
+}

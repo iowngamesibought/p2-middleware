@@ -1,0 +1,42 @@
+{
+  "version": "0.1.8",
+  "recorded_utc": "2026-10-25T16:05:44.237398+00:00",
+  "checks": {
+    "workspace_tests_passed": 84,
+    "session_lifecycle": "simulated network: startup leftovers, confirm, Reset/reconfirm, Stop/EOF, malformed message, setup failure and startup cleanup failure",
+    "real_non_admin_session": "rejected before mutation",
+    "upgrade_program_identity": "passed; schema2 exact path, malformed paths rejected",
+    "legacy_rule_migration": "scalar and array fixture readback validates full IPs; wrong PS3 address rejected",
+    "clippy_all_targets_deny_warnings": "passed",
+    "format": "passed",
+    "locked_offline_release": "passed",
+    "gui_smoke": "rendered simplified window inspected; 15-second no-elevation mode; no privileged lifecycle exercised"
+  },
+  "network_observation": {
+    "owned_firewall_rules": 0,
+    "interface": 3,
+    "forwarding": "Disabled",
+    "protected_journal": "not read"
+  },
+  "limitations": [
+    "Real elevated Session lifecycle pending",
+    "Packet driver not approved; Confirm does not apply a partial unusable gateway",
+    "No live native packet-path or co-op acceptance",
+    "No new Steam or PS3 RUN",
+    "Windows 10 untested"
+  ],
+  "artifacts": [
+    {
+      "path": "p2-middleware.exe",
+      "sha256": "87625f07f3ff652b4af6e7126d1124adf71dbadb1361a97c04f7015976d65205"
+    },
+    {
+      "path": "p2-route.exe",
+      "sha256": "8ff668a85076e81896794be3b12537f2f228798d4129efb5b98d7e4106609f52"
+    },
+    {
+      "path": "p2-bridge.exe",
+      "sha256": "a94fbdd69c2399a7bce8950a4a838a49317dbd58ff9129e3dbc852152ec35f65"
+    }
+  ]
+}

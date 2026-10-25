@@ -1,0 +1,123 @@
+{
+  "version": "0.1.3",
+  "recorded_utc": "2026-10-25T15:05:01.400255+00:00",
+  "host": "Windows 11 x64 build26300",
+  "checks": {
+    "workspace_tests_passed": 70,
+    "control_unit_tests_passed": 4,
+    "helper_subprocess_integration_tests_passed": 2,
+    "system_shell_read_only_round_trip": "passed",
+    "clippy_all_targets_deny_warnings": "passed",
+    "format_check": "passed",
+    "release_build_locked": "passed",
+    "gui_smoke_exit_code": 0,
+    "remaining_owned_processes": 0,
+    "helper_status": {
+      "driver_approved": false,
+      "elevated": false,
+      "mutations": false
+    },
+    "native_run": {
+      "event": "driver_unapproved",
+      "exit_code": 1
+    },
+    "protected_store_exists_after_tests": false
+  },
+  "limitations": [
+    "ShellExecuteExW runas path compiled but interactive UAC not exercised",
+    "Cross-integrity IPC and alternate administrator accounts untested",
+    "No elevated folder ACL, forwarding or firewall mutation exercised",
+    "Driver approval remains empty; previous Defender block untouched",
+    "No driver capture/injection, Steam approval or PS3 test",
+    "Windows 10 runtime untested",
+    "Protected installation and code signing pending; not tester release"
+  ],
+  "artifacts": [
+    {
+      "file": "p2-middleware.exe",
+      "bytes": 7715840,
+      "sha256": "218f0f4ff8b416d747de207f6d63e562150a9e6912b6f076efdc790bf8e5f931"
+    },
+    {
+      "file": "p2-bridge.exe",
+      "bytes": 2603520,
+      "sha256": "a94fbdd69c2399a7bce8950a4a838a49317dbd58ff9129e3dbc852152ec35f65"
+    },
+    {
+      "file": "p2-route.exe",
+      "bytes": 813056,
+      "sha256": "bb9533dc8022d8ed34b47296e5899e9fcd7eab1c51f3c97c6591ad7c1e91f8dd"
+    }
+  ],
+  "source_identity": [
+    {
+      "path": "src/approval.rs",
+      "sha256": "663b0496d964382dc10840f952a7260ed3ee781b5024427225d1f914b3c36f45"
+    },
+    {
+      "path": "src/bin/p2-route.rs",
+      "sha256": "fef2d4114bca3b21aefdca31da17fbe573aa3b587c184dff45ea388328b275ce"
+    },
+    {
+      "path": "src/bridge.rs",
+      "sha256": "2ef1c713d205440690eeb0f0c2fc3fe26457741ba172a74a64ef96fe18fb6372"
+    },
+    {
+      "path": "src/config.rs",
+      "sha256": "0ee051162cb3ee0144bf356933104abb151a86d4d15d2dbe0c69e0ed4697cd7f"
+    },
+    {
+      "path": "src/control.rs",
+      "sha256": "0d09a4371f3fe7f5923a35183aa7de0ae3e25312d294b909dbba2b8d61f27559"
+    },
+    {
+      "path": "src/elevation.rs",
+      "sha256": "d989b9b7393029107049c8388939cd1bf0b46a7c462dadb9601879a863457793"
+    },
+    {
+      "path": "src/lib.rs",
+      "sha256": "5aee71971522f7fa6fd1e62c42eaaaa151ce7b8def5a69caf38c21e4745e2f03"
+    },
+    {
+      "path": "src/main.rs",
+      "sha256": "da4cd1228f67035c43e847b2eb473e3d11329f8a83637558b6f3429810244f9f"
+    },
+    {
+      "path": "src/network.rs",
+      "sha256": "0adea2a4c76d91562ab91bee85298d6599a2350c11043a734b49ea7ee60d6abf"
+    },
+    {
+      "path": "src/packet.rs",
+      "sha256": "b44666f232fe5ce5aa19e3bda4fde66f518ef22f587a130fcab0426ca0c9f0a6"
+    },
+    {
+      "path": "src/preflight.rs",
+      "sha256": "07af3532b21b5a0e7fa8a51c1c235f3926747ffb2ef0cf18b6aec5ebd648ec82"
+    },
+    {
+      "path": "src/route_client.rs",
+      "sha256": "ef757208be90a7bac6ec5c65941102a730968c579fdb15263e06f51c455efb4d"
+    },
+    {
+      "path": "src/routing.rs",
+      "sha256": "081a40725c633f82a696ed8643f36d1215fccdcc5c36ed1812d127e1c62704c3"
+    },
+    {
+      "path": "src/windivert.rs",
+      "sha256": "5ed505edab7ea5d3086920bc47d5e077774454b3b51d7221ee1459cfb1fb1fae"
+    },
+    {
+      "path": "src/windows_host.ps1",
+      "sha256": "3dc148568c73cf27b56cfe24743292eb1c53649666583a00aef0b447e0eabb9c"
+    },
+    {
+      "path": "src/windows_host.rs",
+      "sha256": "4bbfb805854ac8f0c8bf65a4c65a84da411acfe01b2cc4c82a896883d76f8576"
+    },
+    {
+      "path": "tests/helper_ipc.rs",
+      "sha256": "7cc68868449b4d3255a971bcb2c6ddb72f47e1c45ab29f9f8584e2fb44356d07"
+    }
+  ],
+  "cargo_lock_sha256": "b597fd0fb4a3b03b82dc857288215e5bdb5eec376825ab32f21ec9b1beb3020a"
+}

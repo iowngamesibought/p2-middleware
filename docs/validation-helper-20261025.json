@@ -1,0 +1,112 @@
+{
+  "version": "0.1.2",
+  "recorded_utc": "2026-10-25T14:52:14.018587+00:00",
+  "host": "Windows 11 x64 build26300",
+  "checks": {
+    "workspace_tests_passed": 63,
+    "routing_model_tests_passed": 8,
+    "windows_journal_tests_passed": 3,
+    "driver_gate_test_passed": true,
+    "clippy_all_targets_deny_warnings": "passed",
+    "format_check": "passed",
+    "release_build_locked": "passed",
+    "embedded_powershell_syntax": "passed",
+    "gui_smoke_exit_code": 0,
+    "remaining_owned_processes": 0,
+    "helper_status": {
+      "driver_approved": false,
+      "elevated": false,
+      "mutations": false
+    },
+    "native_run": {
+      "event": "driver_unapproved",
+      "exit_code": 1
+    },
+    "protected_store_exists_after_gate_test": false
+  },
+  "limitations": [
+    "Driver identity approval remains empty; previous Defender block not bypassed",
+    "Privileged folder ACL creation and real forwarding/firewall operations not exercised",
+    "Native packet capture/injection not exercised",
+    "No new Steam approval or PS3 game test",
+    "Interim native mode requires elevated GUI; separate UAC broker pending",
+    "Windows 10 runtime untested",
+    "Not a public tester release"
+  ],
+  "artifacts": [
+    {
+      "file": "p2-middleware.exe",
+      "bytes": 7658496,
+      "sha256": "b8aa780a22ed4acd37f9329bf73f4b055913d66b2abd489313f7704a163909bc"
+    },
+    {
+      "file": "p2-bridge.exe",
+      "bytes": 2602496,
+      "sha256": "be1c5ff09a8bd315ff0cf8e553505b6952a24730188d90842513e43640da8add"
+    },
+    {
+      "file": "p2-route.exe",
+      "bytes": 514048,
+      "sha256": "890eef7aa875d883048dafc4b7ef570e658bda2f7afdc6980c773a101e7fc39c"
+    }
+  ],
+  "source_identity": [
+    {
+      "path": "src/approval.rs",
+      "sha256": "663b0496d964382dc10840f952a7260ed3ee781b5024427225d1f914b3c36f45"
+    },
+    {
+      "path": "src/bin/p2-route.rs",
+      "sha256": "6b3bf022a30db0e32d2cf50582501b6ad903df89a4278da72e25c784e8969b5b"
+    },
+    {
+      "path": "src/bridge.rs",
+      "sha256": "2ef1c713d205440690eeb0f0c2fc3fe26457741ba172a74a64ef96fe18fb6372"
+    },
+    {
+      "path": "src/config.rs",
+      "sha256": "0ee051162cb3ee0144bf356933104abb151a86d4d15d2dbe0c69e0ed4697cd7f"
+    },
+    {
+      "path": "src/lib.rs",
+      "sha256": "836189f3cb7ede9ff1907d1d5738e5195690f0098aa60663a95798b31b9b106b"
+    },
+    {
+      "path": "src/main.rs",
+      "sha256": "1a439afbcb146b47641683c194f3463bec7105c201f34c72d185ef0a747cbdc0"
+    },
+    {
+      "path": "src/network.rs",
+      "sha256": "1de83ee8ca19feb9ce3618fabbf573b536c9d108b7686ff848144cc14d9786f2"
+    },
+    {
+      "path": "src/packet.rs",
+      "sha256": "b44666f232fe5ce5aa19e3bda4fde66f518ef22f587a130fcab0426ca0c9f0a6"
+    },
+    {
+      "path": "src/preflight.rs",
+      "sha256": "07af3532b21b5a0e7fa8a51c1c235f3926747ffb2ef0cf18b6aec5ebd648ec82"
+    },
+    {
+      "path": "src/route_client.rs",
+      "sha256": "80f70929647e2d25d946f735c2d6c9e201912d417a1457fde65df47d036cdf13"
+    },
+    {
+      "path": "src/routing.rs",
+      "sha256": "081a40725c633f82a696ed8643f36d1215fccdcc5c36ed1812d127e1c62704c3"
+    },
+    {
+      "path": "src/windivert.rs",
+      "sha256": "5ed505edab7ea5d3086920bc47d5e077774454b3b51d7221ee1459cfb1fb1fae"
+    },
+    {
+      "path": "src/windows_host.ps1",
+      "sha256": "3dc148568c73cf27b56cfe24743292eb1c53649666583a00aef0b447e0eabb9c"
+    },
+    {
+      "path": "src/windows_host.rs",
+      "sha256": "d3e2c75c33a4b9b56dfaabda5e7f5d583a86c222c4db67104b1c629d79c6b02a"
+    }
+  ],
+  "cargo_lock_sha256": "d35a78d93098b849fd5ce98f1c82ceb3805405fda6d412f4d58daab962695de7"
+}

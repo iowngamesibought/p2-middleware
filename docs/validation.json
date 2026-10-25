@@ -1,0 +1,154 @@
+{
+  "recorded_utc": "2026-10-25T14:14:38.688750+00:00",
+  "host": {
+    "os": "Windows 11 Pro",
+    "build": "26300",
+    "architecture": "x86_64"
+  },
+  "toolchain": "rustc 1.99.1 (58cf8f9c3 2026-10-13)\nbinary: rustc\ncommit-hash: 58cf8f9c35b355199727627d07ae34a4e2846d67\ncommit-date: 2026-10-13\nhost: x86_64-pc-windows-msvc\nrelease: 1.99.1\nLLVM version: 23.1.1",
+  "gui_stack": {
+    "eframe": "0.33.3",
+    "winit": "0.30.13",
+    "renderer": "Glow/OpenGL"
+  },
+  "checks": {
+    "cargo_check_workspace": "passed",
+    "cargo_fmt_all_check": "passed",
+    "cargo_test_workspace": {
+      "passed": 33,
+      "failed": 0
+    },
+    "cargo_test_core_no_default_features": {
+      "passed": 27,
+      "failed": 0
+    },
+    "cargo_clippy_workspace_all_targets_deny_warnings": "passed",
+    "cargo_build_workspace_release_locked": "passed"
+  },
+  "desktop_validation": {
+    "launch": "passed",
+    "layout": "visually inspected through Windows computer-use tools",
+    "adapter_discovery": "PC address and upstream router populated from live Windows configuration",
+    "advanced_mode": "expanded; bridge start disabled without configuration and authorization",
+    "native_gateway_button": "disabled with explicit unfinished status",
+    "gui_smoke_exit_code": 0,
+    "remaining_desktop_processes": 0,
+    "remaining_bridge_processes": 0
+  },
+  "not_run": [
+    "fresh live Steam approval",
+    "live bridge login from this new desktop",
+    "Windows packet interception",
+    "PS3 co-op through Windows gateway",
+    "Windows 10 runtime"
+  ],
+  "system_mutations": {
+    "driver_install": false,
+    "forwarding_change": false,
+    "firewall_change": false,
+    "router_change": false
+  },
+  "artifacts": [
+    {
+      "file": "p2-middleware.exe",
+      "bytes": 7558144,
+      "sha256": "37ade765022014dc86fdbf3a73b7a2b8d5b354fac9e4b9ca1f4481494d521f36"
+    },
+    {
+      "file": "p2-bridge.exe",
+      "bytes": 2602496,
+      "sha256": "be1c5ff09a8bd315ff0cf8e553505b6952a24730188d90842513e43640da8add"
+    }
+  ],
+  "source_identity": [
+    {
+      "file": "src/approval.rs",
+      "sha256": "663b0496d964382dc10840f952a7260ed3ee781b5024427225d1f914b3c36f45"
+    },
+    {
+      "file": "src/bridge.rs",
+      "sha256": "3c833d106601f67d13137f8c099cbfb6eec06bc8f6bc9f9c24889c75192394de"
+    },
+    {
+      "file": "src/config.rs",
+      "sha256": "0ee051162cb3ee0144bf356933104abb151a86d4d15d2dbe0c69e0ed4697cd7f"
+    },
+    {
+      "file": "src/lib.rs",
+      "sha256": "657b84711a3e27722a0fa3172fa03162270c10067aaaa289fd0da5bd47828139"
+    },
+    {
+      "file": "src/main.rs",
+      "sha256": "fe5161faa013f9ed8c92a7d15a45e38f111556ae00f0abc77a181a766f0dbc95"
+    },
+    {
+      "file": "src/network.rs",
+      "sha256": "5aa43167ae162358c5b597de37affebc832c4028d835b8f26740a41a94340c70"
+    },
+    {
+      "file": "crates/bridge-core/Cargo.toml",
+      "sha256": "7146571c8c2a593be9f6b9434fb2e39926ed0520713f2708eaea551f1cc4566d"
+    },
+    {
+      "file": "crates/bridge-core/notices/SteamKit-LGPL-2.1.txt",
+      "sha256": "00a89b0d18aacd4114decf79122db87bf35bddaf2bc50e383c9c9f4c263390b2"
+    },
+    {
+      "file": "crates/bridge-core/notices/SteamKit-license.txt",
+      "sha256": "d0c87e66d00e92e13cfa07158bf07e9be65e18aa5220d06af8532092521e78fa"
+    },
+    {
+      "file": "crates/bridge-core/SOURCE_NOTICES.md",
+      "sha256": "69d0a3ca9d4ba8229d81f89f4d2d48cf16f4394d5644ed8d0c0dd6c6dbfb692e"
+    },
+    {
+      "file": "crates/bridge-core/src/auth.rs",
+      "sha256": "0a4221e777f54ed3b37c3fb4202051f4f05c3609c388a82a034dcc93d1349fff"
+    },
+    {
+      "file": "crates/bridge-core/src/channel.rs",
+      "sha256": "3f6319d5db2ac1e4782caca107f109899a6e87a2b4baf20a439f944322fb8efe"
+    },
+    {
+      "file": "crates/bridge-core/src/gateway.rs",
+      "sha256": "9e0e28547f321e8b82ddb0eb5968db3000a3e1a89cc1fd4204a1b6b2575be6b5"
+    },
+    {
+      "file": "crates/bridge-core/src/lib.rs",
+      "sha256": "3cecf46b46039b260e3544491a338e38f26e28d4e47a229a4af8a798925d7e59"
+    },
+    {
+      "file": "crates/bridge-core/src/lobby_advertisement.rs",
+      "sha256": "943cf5150e8fb2f29782a685498b69fc815eb3bd63388c517deb0a624cc282cd"
+    },
+    {
+      "file": "crates/bridge-core/src/lobby_diagnostics.rs",
+      "sha256": "0f0f433ac11ad27f9b0717f31b2178a13f3a367ff4e18ee3c788267179377a1d"
+    },
+    {
+      "file": "crates/bridge-core/src/main.rs",
+      "sha256": "539a7151d2c8f858069e017f9c5ecf31aae702dca31748e22c9956be7db071d8"
+    },
+    {
+      "file": "crates/bridge-core/src/protocol.rs",
+      "sha256": "2c828ed00c1ffba0ea7e00741ed8009bee803a98b2c65184b1664c1a7b367214"
+    },
+    {
+      "file": "crates/bridge-core/src/steam-public.der",
+      "sha256": "a0bc38bd7cd2177058dc15fdded2aadc718d59f49fcc943a69d13e581fb4f92f"
+    },
+    {
+      "file": "crates/bridge-core/tests/contracts.rs",
+      "sha256": "537d23e49af93362cfb136646dbe1fa51932a942827adfe25f67406db6899901"
+    },
+    {
+      "file": "crates/bridge-core/tests/legacy-dotnet-fixture.json",
+      "sha256": "4b03c7056b508d7828a02fbfe03b84f7f5005a4aecf1d113e215b6d2a90859a6"
+    },
+    {
+      "file": "crates/bridge-core/tests/modern-dotnet-fixture.json",
+      "sha256": "16ba9d4b98cd5792e54688114c3c37a8471a0c9556954717affef12fd9f6ea70"
+    }
+  ],
+  "cargo_lock_sha256": "279a1875e7312aea8ec0fe408b54c2f912e918a92d1a0151a8d2e5d504367ebc"
+}

@@ -1,0 +1,15 @@
+/target/
+/dist/
+/runtime/
+/game/
+/backups/
+/p2-middleware.toml
+*.dmp
+*.pcap
+*.pcapng
+*.log
+*.svg
+
+
+/app/
+__pycache__/

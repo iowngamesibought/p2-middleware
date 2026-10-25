@@ -1,0 +1,65 @@
+{
+  "kind": "source-only import from owned research bridge; not a binary wrapper",
+  "files": [
+    {
+      "source": "implementation/portal-2-gateway/src/auth.rs",
+      "sha256": "66462049cf2e5e8858e52ac48ecfca12ab0ee2e6f430de1eaa3641f3059fca82",
+      "destination": "crates/bridge-core/src/auth.rs"
+    },
+    {
+      "source": "implementation/portal-2-gateway/src/channel.rs",
+      "sha256": "3f6319d5db2ac1e4782caca107f109899a6e87a2b4baf20a439f944322fb8efe",
+      "destination": "crates/bridge-core/src/channel.rs"
+    },
+    {
+      "source": "implementation/portal-2-gateway/src/gateway.rs",
+      "sha256": "b64227673ce160a6a4be6dfc32cfc1eaf1338860fd19a7e067afdf5fa9d436cf",
+      "destination": "crates/bridge-core/src/gateway.rs"
+    },
+    {
+      "source": "implementation/portal-2-gateway/src/lib.rs",
+      "sha256": "3cecf46b46039b260e3544491a338e38f26e28d4e47a229a4af8a798925d7e59",
+      "destination": "crates/bridge-core/src/lib.rs"
+    },
+    {
+      "source": "implementation/portal-2-gateway/src/lobby_advertisement.rs",
+      "sha256": "943cf5150e8fb2f29782a685498b69fc815eb3bd63388c517deb0a624cc282cd",
+      "destination": "crates/bridge-core/src/lobby_advertisement.rs"
+    },
+    {
+      "source": "implementation/portal-2-gateway/src/lobby_diagnostics.rs",
+      "sha256": "0f0f433ac11ad27f9b0717f31b2178a13f3a367ff4e18ee3c788267179377a1d",
+      "destination": "crates/bridge-core/src/lobby_diagnostics.rs"
+    },
+    {
+      "source": "implementation/portal-2-gateway/src/main.rs",
+      "sha256": "8ba632634e95718e9d23821ea9ec3e06001433cd7cf1d5f9d5b2a53abdfe4527",
+      "destination": "crates/bridge-core/src/main.rs"
+    },
+    {
+      "source": "implementation/portal-2-gateway/src/protocol.rs",
+      "sha256": "2c828ed00c1ffba0ea7e00741ed8009bee803a98b2c65184b1664c1a7b367214",
+      "destination": "crates/bridge-core/src/protocol.rs"
+    },
+    {
+      "source": "implementation/portal-2-gateway/src/steam-public.der",
+      "sha256": "a0bc38bd7cd2177058dc15fdded2aadc718d59f49fcc943a69d13e581fb4f92f",
+      "destination": "crates/bridge-core/src/steam-public.der"
+    },
+    {
+      "source": "implementation/portal-2-gateway/tests/contracts.rs",
+      "sha256": "2eeda48b94d769a43989138d90f861becb172d0779f8680f9979f05a9802f1ff",
+      "destination": "crates/bridge-core/tests/contracts.rs"
+    },
+    {
+      "source": "implementation/portal-2-gateway/tests/legacy-dotnet-fixture.json",
+      "sha256": "4b03c7056b508d7828a02fbfe03b84f7f5005a4aecf1d113e215b6d2a90859a6",
+      "destination": "crates/bridge-core/tests/legacy-dotnet-fixture.json"
+    },
+    {
+      "source": "implementation/portal-2-gateway/tests/modern-dotnet-fixture.json",
+      "sha256": "16ba9d4b98cd5792e54688114c3c37a8471a0c9556954717affef12fd9f6ea70",
+      "destination": "crates/bridge-core/tests/modern-dotnet-fixture.json"
+    }
+  ]
+}

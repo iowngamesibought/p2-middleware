@@ -1,0 +1,125 @@
+{
+  "version": "0.1.4",
+  "recorded_utc": "2026-10-25T15:18:23.654057+00:00",
+  "host": "Windows 11 x64 build26300",
+  "checks": {
+    "workspace_tests_passed": 75,
+    "driver_review_tests_passed": 5,
+    "own_test_binary_authenticode_query": "passed; no target binary loaded",
+    "clippy_all_targets_deny_warnings": "passed",
+    "format_check": "passed",
+    "release_build_locked": "passed",
+    "gui_smoke_exit_code": 0,
+    "remaining_processes_from_release_build_folder": 0,
+    "helper_status": {
+      "driver_approved": false,
+      "elevated": false,
+      "mutations": false
+    },
+    "native_run": {
+      "event": "driver_unapproved",
+      "exit_code": 1
+    },
+    "protected_store_exists_after_tests": false
+  },
+  "limitations": [
+    "No approved driver file identity; dependency detection remains unresolved",
+    "Blocked archive not retried, restored, replaced or extracted",
+    "No driver load, native network or PS3 tests",
+    "No elevated networking/ACL mutation or recovery acceptance",
+    "Prior user helper-check success retained; UAC cancellation/alternate account untested",
+    "Windows 10, signing and protected installation pending"
+  ],
+  "artifacts": [
+    {
+      "file": "p2-middleware.exe",
+      "bytes": 7805440,
+      "sha256": "5b0ff7a3a3e14c71775eb2bbcb44bc70359e1eb2e9507f74971612d091f750df"
+    },
+    {
+      "file": "p2-bridge.exe",
+      "bytes": 2603520,
+      "sha256": "a94fbdd69c2399a7bce8950a4a838a49317dbd58ff9129e3dbc852152ec35f65"
+    },
+    {
+      "file": "p2-route.exe",
+      "bytes": 813056,
+      "sha256": "5c921d94c6759b29c38c4a274199c1ddf31849fbaeb22f3c9961099c57918f73"
+    }
+  ],
+  "source_identity": [
+    {
+      "path": "src/approval.rs",
+      "sha256": "663b0496d964382dc10840f952a7260ed3ee781b5024427225d1f914b3c36f45"
+    },
+    {
+      "path": "src/bin/p2-route.rs",
+      "sha256": "fef2d4114bca3b21aefdca31da17fbe573aa3b587c184dff45ea388328b275ce"
+    },
+    {
+      "path": "src/bridge.rs",
+      "sha256": "2ef1c713d205440690eeb0f0c2fc3fe26457741ba172a74a64ef96fe18fb6372"
+    },
+    {
+      "path": "src/config.rs",
+      "sha256": "0ee051162cb3ee0144bf356933104abb151a86d4d15d2dbe0c69e0ed4697cd7f"
+    },
+    {
+      "path": "src/control.rs",
+      "sha256": "0d09a4371f3fe7f5923a35183aa7de0ae3e25312d294b909dbba2b8d61f27559"
+    },
+    {
+      "path": "src/driver_review.rs",
+      "sha256": "52f57a340453a530174cabab291c6431c2d2c6ea2a21e4891dff3f75d93b79e1"
+    },
+    {
+      "path": "src/elevation.rs",
+      "sha256": "d989b9b7393029107049c8388939cd1bf0b46a7c462dadb9601879a863457793"
+    },
+    {
+      "path": "src/lib.rs",
+      "sha256": "e3bb637135018260ca5df53f7778840657b08d9042a7ab6b346542a596d80ea4"
+    },
+    {
+      "path": "src/main.rs",
+      "sha256": "21c31a893f6139b392cc2c38640eb974ca5ed4b4d391687e7d108b3163ca9622"
+    },
+    {
+      "path": "src/network.rs",
+      "sha256": "0adea2a4c76d91562ab91bee85298d6599a2350c11043a734b49ea7ee60d6abf"
+    },
+    {
+      "path": "src/packet.rs",
+      "sha256": "b44666f232fe5ce5aa19e3bda4fde66f518ef22f587a130fcab0426ca0c9f0a6"
+    },
+    {
+      "path": "src/preflight.rs",
+      "sha256": "fcc461cdeae90223447cfc483bff0d075d64bddbaf30cf046933196d28a13d93"
+    },
+    {
+      "path": "src/route_client.rs",
+      "sha256": "ef757208be90a7bac6ec5c65941102a730968c579fdb15263e06f51c455efb4d"
+    },
+    {
+      "path": "src/routing.rs",
+      "sha256": "081a40725c633f82a696ed8643f36d1215fccdcc5c36ed1812d127e1c62704c3"
+    },
+    {
+      "path": "src/windivert.rs",
+      "sha256": "5ed505edab7ea5d3086920bc47d5e077774454b3b51d7221ee1459cfb1fb1fae"
+    },
+    {
+      "path": "src/windows_host.ps1",
+      "sha256": "c5087cfb40497443e37973fabf60654d9f1465e0d7c6d2fcd03c8ad61fab94b3"
+    },
+    {
+      "path": "src/windows_host.rs",
+      "sha256": "4bbfb805854ac8f0c8bf65a4c65a84da411acfe01b2cc4c82a896883d76f8576"
+    },
+    {
+      "path": "tests/helper_ipc.rs",
+      "sha256": "7cc68868449b4d3255a971bcb2c6ddb72f47e1c45ab29f9f8584e2fb44356d07"
+    }
+  ],
+  "cargo_lock_sha256": "1a197d25fafd391b38c3e0d65d5623ceb471ef15d9fefce63d66d3649bbd3e82"
+}

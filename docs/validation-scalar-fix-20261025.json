@@ -1,0 +1,59 @@
+{
+  "version": "0.1.7",
+  "recorded_utc": "2026-10-25T15:49:25.425078+00:00",
+  "checks": {
+    "workspace_tests_passed": 80,
+    "scalar_and_array_regressions": "passed; two accepted, two rejected",
+    "exact_retained_rule_read_only_query": "exit 0; full 10.0.0.100 and 10.0.0.220 returned",
+    "format_check": "passed",
+    "clippy_all_targets_deny_warnings": "passed",
+    "locked_offline_release_build": "passed",
+    "gui_smoke": "not repeated; helper-only fix"
+  },
+  "observed_retained_state": {
+    "rule": "p2-middleware-a904337d3e5011bf",
+    "interface": 3,
+    "forwarding": "Disabled",
+    "helper_running": false,
+    "journal": "retained according to GUI; protected contents not read"
+  },
+  "recovery": "pending user action; helper-only repair installed and verified in original v0.1.6 folder",
+  "limitations": [
+    "No new network mutation performed by agent",
+    "Full elevated setup/restore not accepted yet",
+    "No driver load, Steam approval or game RUN"
+  ],
+  "artifacts": [
+    {
+      "path": "p2-middleware.exe",
+      "sha256": "2f1c2561b80b8061814c79f50c0ad2239ada20356f28215ff7a379cbc6d1ba8f"
+    },
+    {
+      "path": "p2-route.exe",
+      "sha256": "9bc5c91c0e2bd865560b7c3bcf43c99eceffd5741231f0223b53ddd03ab0e277"
+    },
+    {
+      "path": "p2-bridge.exe",
+      "sha256": "a94fbdd69c2399a7bce8950a4a838a49317dbd58ff9129e3dbc852152ec35f65"
+    }
+  ],
+  "source_identity": [
+    {
+      "path": "Cargo.toml",
+      "sha256": "11947d6faf5898f79cb758fc46f949cfbc9683b88d9b4f9fc72865f771505c70"
+    },
+    {
+      "path": "Cargo.lock",
+      "sha256": "ea30626f06fa7d0f3b18cd1902d6ca0dfedbd9413fe78d8f58e294004d416b43"
+    },
+    {
+      "path": "src\\windows_host.rs",
+      "sha256": "b063a6ada1dc337512b3406388310d50b9d8d9688b8576e00e8e3bf875722f17"
+    },
+    {
+      "path": "src\\windows_host.ps1",
+      "sha256": "90adcc6615fb5a82c7b7f96f9021e59f01addac0192c1eef74afc29a7612d6d0"
+    }
+  ],
+  "repair_receipt": "helper-repair-receipt-20261025.json"
+}

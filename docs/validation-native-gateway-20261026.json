@@ -1,0 +1,64 @@
+{
+  "version": "0.1.10",
+  "recorded_at": "2026-10-26T00:43:45.8114701+08:00",
+  "automated": {
+    "format": "passed",
+    "workspace_tests": 90,
+    "clippy": "passed with warnings denied",
+    "release": "passed, locked offline"
+  },
+  "live_setup": {
+    "exit_code": 0,
+    "sequence": [
+      "session startup cleanup",
+      "Start native gateway",
+      "route_ready",
+      "Reset",
+      "session_clean",
+      "Stop",
+      "restored"
+    ],
+    "ps3_gateway_changed": false,
+    "steam_used": false,
+    "result": "passed",
+    "launcher": "p2-network-check --gateway"
+  },
+  "independent_readback": {
+    "remaining_aliases": 0,
+    "observed_at": "2026-10-26T00:41:45.0851862+08:00",
+    "helpers": 0,
+    "dhcp": "Disabled",
+    "checked_cm_addresses": 26,
+    "owned_rules": 0,
+    "forwarding": "Disabled",
+    "interface": 3
+  },
+  "build_fix": "Split fixed native system script after Windows command-line length limit caught by tests; full checks passed afterward",
+  "binaries": [
+    {
+      "name": "p2-bridge.exe",
+      "sha256": "56439a4571da861081556a18eeabc5a63b75d5f56cdc84134a96adc16c92c8bb"
+    },
+    {
+      "name": "p2-middleware.exe",
+      "sha256": "80eb0711b4fdab76d9c78f08fd9fc6562498e42831b67da90ab4d3d622c9f69c"
+    },
+    {
+      "name": "p2-network-check.exe",
+      "sha256": "5175081975ce18259a3bbfd5d843b6a5173928e5d0dc229e0d54bc0a0f3fb6e5"
+    },
+    {
+      "name": "p2-route.exe",
+      "sha256": "8977516a6dd075ea6ae345939f52b367e791600d84dfea5314bdafb18f280e00"
+    }
+  ],
+  "pending": [
+    "Integrated GUI Steam login",
+    "Ordinary PSN transit",
+    "Game handshake and co-op",
+    "UDP fallback",
+    "Forced crash/reboot",
+    "DHCP-enabled adapter",
+    "Windows 10"
+  ]
+}

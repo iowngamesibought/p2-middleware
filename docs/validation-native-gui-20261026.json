@@ -1,0 +1,17 @@
+{
+  "version": "0.1.10",
+  "installed_at": "C:/Users/24548/AppData/Local/Programs/P2Middleware",
+  "verified_bundle_files": 9,
+  "gui_pid": 7176,
+  "bridge_pid": 10608,
+  "helper_pid": 13452,
+  "user_report": "Yes it shows gateway connected",
+  "network_observed_at": "2026-10-26T00:44:59.7212011+08:00",
+  "preferred_cm_aliases": 26,
+  "owned_rule_count": 1,
+  "forwarding": "Enabled",
+  "listener": "0.0.0.0:27017",
+  "steam_guard": "User authorized account via desktop QR; bridge launched",
+  "game_login": "pending user console test",
+  "cleanup": "active session, not yet requested"
+}

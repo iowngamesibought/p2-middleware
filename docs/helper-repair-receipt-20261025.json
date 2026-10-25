@@ -1,0 +1,10 @@
+{
+  "recorded_utc": "2026-10-25T15:49:56.7922217Z",
+  "target": "Z:\\projects\\p2_middleware\\dist\\p2-middleware-0.1.6-dev-windows-x64\\p2-route.exe",
+  "original_sha256": "ae78831dce1681101ff26cdb14c365976cc7c947f660b45d101ce20ebefdeddd",
+  "replacement_sha256": "9bc5c91c0e2bd865560b7c3bcf43c99eceffd5741231f0223b53ddd03ab0e277",
+  "replacement_version": "0.1.7",
+  "backup": "Z:\\projects\\p2_middleware\\dist\\repair-backup-0.1.6-20261025",
+  "original_manifest_preserved": true,
+  "note": "Only helper replaced. Original 0.1.6 manifest no longer describes helper. Original source snapshot preserved. Recovery still pending user approval."
+}

@@ -1,0 +1,38 @@
+{
+  "version": "0.1.3",
+  "recorded_utc": "2026-10-25T15:09:04.869928+00:00",
+  "scope": "User-run read-only administrator helper probe",
+  "evidence": {
+    "user_report": "Helper check finished. No network settings were changed.",
+    "observed_app": "P2 middleware from dist/p2-middleware-0.1.3-dev-windows-x64",
+    "observed_activity": [
+      "Administrator helper connection verified. No network settings were changed.",
+      "Read-only helper check finished.",
+      "Helper check finished. No network settings were changed."
+    ],
+    "successful_sequences_visible": 3,
+    "observation_method": "Native app accessibility activity panel; no screenshot or unrelated UI data saved"
+  },
+  "result": "Elevated helper token reported and verified local control exchange completed successfully",
+  "artifacts_verified_against_build_record": [
+    {
+      "file": "p2-middleware.exe",
+      "sha256": "218f0f4ff8b416d747de207f6d63e562150a9e6912b6f076efdc790bf8e5f931"
+    },
+    {
+      "file": "p2-bridge.exe",
+      "sha256": "a94fbdd69c2399a7bce8950a4a838a49317dbd58ff9129e3dbc852152ec35f65"
+    },
+    {
+      "file": "p2-route.exe",
+      "sha256": "bb9533dc8022d8ed34b47296e5899e9fcd7eab1c51f3c97c6591ad7c1e91f8dd"
+    }
+  ],
+  "limits": [
+    "UAC prompt interaction was performed by user and not observed by agent",
+    "GUI token elevation was not independently measured; cross-integrity boundary not separately proven",
+    "Cancellation and alternate-admin credentials not tested",
+    "No driver load, forwarding, firewall, recovery mutation, Steam approval or PS3 gameplay tested"
+  ],
+  "prior_build_record": "validation-control-20261025.json"
+}
