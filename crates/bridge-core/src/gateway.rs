@@ -1,6 +1,7 @@
 use crate::{
     bad,
     channel::{self, Envelope},
+    cloud::{self, CloudDownloads},
     lobby_advertisement::AdvertisePlatform,
     lobby_diagnostics::{SearchDistance, SearchPlatform},
     protocol as p,
@@ -97,6 +98,7 @@ pub struct LobbyPolicies {
     pub search_platform: SearchPlatform,
     pub search_distance: SearchDistance,
     pub advertise_platform: AdvertisePlatform,
+    pub cloud_downloads: CloudDownloads,
 }
 
 pub fn relay(ps3: TcpStream, auth: &Authorization, deadline: Instant) -> io::Result<()> {
@@ -131,6 +133,7 @@ pub fn relay_with_search_policies(
             search_platform,
             search_distance,
             advertise_platform: AdvertisePlatform::Preserve,
+            cloud_downloads: CloudDownloads::Preserve,
         },
     )
 }
@@ -332,6 +335,19 @@ fn relay_connected(
                     event("server_message_suppressed", json!({"emsg":id}));
                     message.zeroize();
                     continue;
+                }
+                match cloud::adapt(&message, policies.cloud_downloads)? {
+                    cloud::Action::Forward => {}
+                    cloud::Action::Replace(rewritten, audit) => {
+                        event("cloud_download_policy", audit);
+                        message.zeroize();
+                        message = rewritten;
+                    }
+                    cloud::Action::Drop(audit) => {
+                        event("cloud_download_policy", audit);
+                        message.zeroize();
+                        continue;
+                    }
                 }
                 if message.len() >= 8 && message[3] & 128 != 0 {
                     let (id, h, b) = p::proto(&message)?;

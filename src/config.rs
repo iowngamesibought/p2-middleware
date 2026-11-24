@@ -9,6 +9,8 @@ pub struct Settings {
     pub router_ip: String,
     pub prefix_len: u8,
     pub crossplay: bool,
+    /// Hide Steam Cloud saves from the PS3 so it keeps its local progress.
+    pub block_cloud_downloads: bool,
 }
 impl Default for Settings {
     fn default() -> Self {
@@ -18,6 +20,7 @@ impl Default for Settings {
             router_ip: String::new(),
             prefix_len: 24,
             crossplay: true,
+            block_cloud_downloads: true,
         }
     }
 }

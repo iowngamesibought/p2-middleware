@@ -55,6 +55,12 @@ impl Bridge {
             } else {
                 "preserve"
             },
+            "--cloud-downloads",
+            if settings.block_cloud_downloads {
+                "block"
+            } else {
+                "preserve"
+            },
         ]);
         command
             .stdin(Stdio::piped())
@@ -146,6 +152,9 @@ fn friendly_event(line: &str) -> Option<&'static str> {
         } else {
             "Steam declined the game login."
         }),
+        "cloud_download_policy" => {
+            Some("Blocked a Steam Cloud save download; the PS3 keeps its local save.")
+        }
         "session_end" => Some("The console connection ended."),
         "fatal" => Some("The bridge could not continue. Check the selected address and port."),
         "stopped" => Some("The bridge session finished."),

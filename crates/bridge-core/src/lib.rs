@@ -1,6 +1,7 @@
 #[cfg(feature = "web-auth")]
 pub mod auth;
 pub mod channel;
+pub mod cloud;
 pub mod gateway;
 pub mod lobby_advertisement;
 pub mod lobby_diagnostics;

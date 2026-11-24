@@ -1,5 +1,18 @@
 # Current state
 
+## Latest: Steam Cloud download blocking (2026-11-23, untested on PS3)
+
+New `crates/bridge-core/src/cloud.rs`, enabled by `serve --cloud-downloads block`
+(CLI default `preserve`). The desktop setting `block_cloud_downloads` defaults to
+true; `router-bridge.py` blocks unless `--allow-cloud-downloads` is given. Steam ->
+PS3 only: UFS file list responses (5207) lose every `files` entry, download and
+single-file-info responses (5211, 5231) are answered with eResult 9 (FileNotFound),
+download chunks (5212) and any non-protobuf form of these messages are dropped.
+PS3 -> Steam traffic, including uploads, is unchanged. Each action logs a
+`cloud_download_policy` event. Only the new module was compiled and unit-tested in
+isolation; the full workspace was not built (offline, no vendored crates) and no
+PS3 RUN was made. It is unproven that the PS3 uses UFS EMsgs for its cloud sync.
+
 ## Latest: v0.1.0 public release candidate (2026-10-26, not published)
 
 User confirmed PS3-PC co-op with the desktop app using a Steam friend invite, then

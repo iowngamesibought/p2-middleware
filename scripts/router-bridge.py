@@ -98,6 +98,8 @@ def main():
     p.add_argument('--bridge', type=Path, default=default_bridge)
     p.add_argument('--port', type=int, default=18743)
     p.add_argument('--no-crossplay', action='store_true')
+    p.add_argument('--allow-cloud-downloads', action='store_true',
+                   help='let the PS3 download Steam Cloud saves (default: blocked, local save kept)')
     a = p.parse_args()
     for ip in (a.ps3, a.pc, a.router):
         if not ipaddress.IPv4Address(ip).is_private:
@@ -124,7 +126,8 @@ def main():
                                   '--seconds', '86400', '--sessions', '1000',
                                   '--search-platform', 'any' if crossplay else 'preserve',
                                   '--search-distance', 'worldwide',
-                                  '--advertise-platform', 'default' if crossplay else 'preserve'],
+                                  '--advertise-platform', 'default' if crossplay else 'preserve',
+                                  '--cloud-downloads', 'preserve' if a.allow_cloud_downloads else 'block'],
                                  stdin=auth.stdout, stderr=subprocess.PIPE, text=True)
         auth.stdout.close()
         webbrowser.open(f'http://127.0.0.1:{a.port}/')
