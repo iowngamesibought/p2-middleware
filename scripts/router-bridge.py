@@ -100,6 +100,10 @@ def main():
     p.add_argument('--no-crossplay', action='store_true')
     p.add_argument('--allow-cloud-downloads', action='store_true',
                    help='let the PS3 download Steam Cloud saves (default: blocked, local save kept)')
+    p.add_argument('--steam-stats-rejections', action='store_true',
+                   help="pass Steam's stats rejections to the PS3 (default: report success, PS3 keeps its values)")
+    p.add_argument('--login-os', choices=('ps3', 'windows'), default='windows',
+                   help='client OS reported to Steam; ps3 is an untested experiment for PS3-only stats')
     a = p.parse_args()
     for ip in (a.ps3, a.pc, a.router):
         if not ipaddress.IPv4Address(ip).is_private:
@@ -127,7 +131,9 @@ def main():
                                   '--search-platform', 'any' if crossplay else 'preserve',
                                   '--search-distance', 'worldwide',
                                   '--advertise-platform', 'default' if crossplay else 'preserve',
-                                  '--cloud-downloads', 'preserve' if a.allow_cloud_downloads else 'block'],
+                                  '--cloud-downloads', 'preserve' if a.allow_cloud_downloads else 'block',
+                                  '--stats-store', 'preserve' if a.steam_stats_rejections else 'accept-local',
+                                  '--login-os', a.login_os],
                                  stdin=auth.stdout, stderr=subprocess.PIPE, text=True)
         auth.stdout.close()
         webbrowser.open(f'http://127.0.0.1:{a.port}/')
@@ -152,9 +158,10 @@ def main():
                 if router.stdout.readline().strip() != b'armed':
                     raise RuntimeError('router rules were not applied')
                 print(f'READY. PS3 gateway stays {a.router}. Ctrl+C to stop.')
-            elif name in ('ps3_connected', 'session_end', 'official_login_result', 'fatal', 'stopped',
+            elif name in ('ps3_connected', 'login_translated', 'session_end', 'official_login_result', 'fatal', 'stopped',
                           'lobby_search_diagnostic', 'lobby_publication_diagnostic',
-                          'lobby_search_policy', 'lobby_advertisement_policy'):
+                          'lobby_search_policy', 'lobby_advertisement_policy',
+                          'cloud_diagnostic', 'cloud_download_policy', 'stats_store_policy'):
                 print(line.rstrip())
         return serve.wait()
     except KeyboardInterrupt:

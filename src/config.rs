@@ -11,6 +11,10 @@ pub struct Settings {
     pub crossplay: bool,
     /// Hide Steam Cloud saves from the PS3 so it keeps its local progress.
     pub block_cloud_downloads: bool,
+    /// When Steam rejects the PS3's stats update, report success so the PS3 keeps its values.
+    pub keep_local_stats: bool,
+    /// Experiment: tell Steam the session is a PS3 (EOSType -300) instead of Windows 11.
+    pub report_ps3_os: bool,
 }
 impl Default for Settings {
     fn default() -> Self {
@@ -21,6 +25,8 @@ impl Default for Settings {
             prefix_len: 24,
             crossplay: true,
             block_cloud_downloads: true,
+            keep_local_stats: true,
+            report_ps3_os: false,
         }
     }
 }

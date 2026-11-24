@@ -105,6 +105,8 @@ pub fn for_console<'a>(adapters: &'a [Adapter], ps3: &str) -> Result<&'a Adapter
                     prefix_len: a.prefix,
                     crossplay: true,
                     block_cloud_downloads: true,
+                    keep_local_stats: true,
+                    report_ps3_os: false,
                 }
                 .validate()
                 .is_ok()
