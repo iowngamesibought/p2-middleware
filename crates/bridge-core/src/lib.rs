@@ -1,10 +1,13 @@
 #[cfg(feature = "web-auth")]
 pub mod auth;
 pub mod channel;
+pub mod cloud;
+pub mod cloud_diagnostics;
 pub mod gateway;
 pub mod lobby_advertisement;
 pub mod lobby_diagnostics;
 pub mod protocol;
+pub mod stats;
 
 pub fn bad(reason: &'static str) -> std::io::Error {
     std::io::Error::new(std::io::ErrorKind::InvalidData, reason)

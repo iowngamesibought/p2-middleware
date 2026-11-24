@@ -1,8 +1,10 @@
 use p2_bridge_core::{
     bad, channel,
-    gateway::{self, event, Authorization},
+    cloud::CloudDownloads,
+    gateway::{self, event, Authorization, LoginOs},
     lobby_advertisement::AdvertisePlatform,
     lobby_diagnostics::{SearchDistance, SearchPlatform},
+    stats::StatsStore,
 };
 use serde_json::json;
 use std::{
@@ -28,6 +30,9 @@ fn serve(args: &[String]) -> io::Result<()> {
     let mut search_platform = SearchPlatform::default();
     let mut search_distance = SearchDistance::default();
     let mut advertise_platform = AdvertisePlatform::default();
+    let mut cloud_downloads = CloudDownloads::default();
+    let mut stats_store = StatsStore::default();
+    let mut login_os = LoginOs::default();
     for pair in args.chunks(2) {
         if pair.len() != 2 {
             return Err(bad("missing_option_value"));
@@ -41,6 +46,9 @@ fn serve(args: &[String]) -> io::Result<()> {
             "--search-platform" => search_platform = SearchPlatform::parse(&pair[1])?,
             "--search-distance" => search_distance = SearchDistance::parse(&pair[1])?,
             "--advertise-platform" => advertise_platform = AdvertisePlatform::parse(&pair[1])?,
+            "--cloud-downloads" => cloud_downloads = CloudDownloads::parse(&pair[1])?,
+            "--stats-store" => stats_store = StatsStore::parse(&pair[1])?,
+            "--login-os" => login_os = LoginOs::parse(&pair[1])?,
             _ => return Err(bad("unknown_option")),
         }
     }
@@ -77,7 +85,7 @@ fn serve(args: &[String]) -> io::Result<()> {
     listener.set_nonblocking(true)?;
     event(
         "listening",
-        json!({"bind":bind.to_string(),"peer":peer.to_string(),"seconds":seconds,"sessions":sessions,"central_service":false,"search_platform":search_platform.name(),"search_distance":search_distance.name(),"advertise_platform":advertise_platform.name()}),
+        json!({"bind":bind.to_string(),"peer":peer.to_string(),"seconds":seconds,"sessions":sessions,"central_service":false,"search_platform":search_platform.name(),"search_distance":search_distance.name(),"advertise_platform":advertise_platform.name(),"cloud_downloads":cloud_downloads.name(),"stats_store":stats_store.name(),"login_os":login_os.name()}),
     );
     let deadline = Instant::now() + Duration::from_secs(seconds);
     let mut count = 0;
@@ -103,6 +111,9 @@ fn serve(args: &[String]) -> io::Result<()> {
                         search_platform,
                         search_distance,
                         advertise_platform,
+                        cloud_downloads,
+                        stats_store,
+                        login_os,
                     },
                 ) {
                     event(
@@ -208,7 +219,7 @@ fn run() -> io::Result<()> {
             Ok(())
         }
         _ => {
-            eprintln!("portal2-gateway directory | probe <CM-IP:port> | authorize --qr <local.svg> <CM-IP:port> | serve [--bind private-IP:port --peer PS3-IP --seconds 600 --sessions 3 (max 86400 / 1000) --search-platform preserve|any --search-distance preserve|worldwide --advertise-platform preserve|default]\nAuthorize stdout contains credentials: connect it directly to serve stdin over a local pipe or SSH.");
+            eprintln!("portal2-gateway directory | probe <CM-IP:port> | authorize --qr <local.svg> <CM-IP:port> | serve [--bind private-IP:port --peer PS3-IP --seconds 600 --sessions 3 (max 86400 / 1000) --search-platform preserve|any --search-distance preserve|worldwide --advertise-platform preserve|default --cloud-downloads preserve|block --stats-store preserve|accept-local --login-os windows|ps3]\nAuthorize stdout contains credentials: connect it directly to serve stdin over a local pipe or SSH.");
             Err(bad("usage"))
         }
     }

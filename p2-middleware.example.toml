@@ -4,4 +4,12 @@ pc_ip = "192.168.1.20"
 router_ip = "192.168.1.1"
 prefix_len = 24
 crossplay = true
+# Hide Steam Cloud saves from the PS3 so it keeps its local progress.
+block_cloud_downloads = true
+# When Steam rejects the PS3's stats update, tell the PS3 it succeeded so it keeps
+# its own values. Steam's copy is not changed.
+keep_local_stats = true
+# Experiment (untested): report the session to Steam as a PS3 instead of Windows 11,
+# so Steam may accept the PS3-only stats that hold progress.
+report_ps3_os = false
 

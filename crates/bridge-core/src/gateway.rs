@@ -1,9 +1,11 @@
 use crate::{
     bad,
     channel::{self, Envelope},
+    cloud::{self, CloudDownloads},
     lobby_advertisement::AdvertisePlatform,
     lobby_diagnostics::{SearchDistance, SearchPlatform},
     protocol as p,
+    stats::StatsStore,
 };
 use serde::{Deserialize, Serialize};
 use serde_json::json;
@@ -56,7 +58,48 @@ pub fn event(name: &str, data: serde_json::Value) {
         json!({"unix_ms":SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_millis(),"event":name,"data":data})
     );
 }
-pub fn translate_login(input: &[u8], account: &str, token: &str) -> io::Result<Vec<u8>> {
+/// Client OS reported to Steam in the translated logon (CMsgClientLogon field 7).
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+pub enum LoginOs {
+    /// EOSType Windows 11 (20); the original behaviour.
+    #[default]
+    Windows,
+    /// EOSType PS3 (-300). Experiment: PS3.* stats have platform_access 8 and are
+    /// rejected (eresult 8) when the session is reported as Windows.
+    Ps3,
+}
+impl LoginOs {
+    pub fn parse(value: &str) -> io::Result<Self> {
+        match value {
+            "windows" => Ok(Self::Windows),
+            "ps3" => Ok(Self::Ps3),
+            _ => Err(bad("login_os_option")),
+        }
+    }
+    pub fn name(self) -> &'static str {
+        match self {
+            Self::Windows => "windows",
+            Self::Ps3 => "ps3",
+        }
+    }
+    fn eos_type(self) -> i32 {
+        match self {
+            Self::Windows => 20,
+            Self::Ps3 => -300,
+        }
+    }
+}
+/// The client_os_type the PS3 itself sent (field 7), for diagnostics. Not secret.
+pub fn original_os_type(input: &[u8]) -> Option<i32> {
+    let (_, _, b) = p::proto(input).ok()?;
+    p::uint(&p::fields(b).ok()?, 7).ok()?.map(|v| v as i32)
+}
+pub fn translate_login(
+    input: &[u8],
+    account: &str,
+    token: &str,
+    os: LoginOs,
+) -> io::Result<Vec<u8>> {
     let (id, h, b) = p::proto(input)?;
     if id != 5514 {
         return Err(bad("first_message_not_logon"));
@@ -76,7 +119,8 @@ pub fn translate_login(input: &[u8], account: &str, token: &str) -> io::Result<V
         ],
     )?;
     p::vi(1, p::MODERN_PROTOCOL, &mut body);
-    p::vi(7, 20, &mut body);
+    // int32 varints are sign-extended to 64 bits.
+    p::vi(7, os.eos_type() as i64 as u64, &mut body);
     p::vi(8, 1, &mut body);
     p::bin(50, account.as_bytes(), &mut body);
     p::bin(108, token.as_bytes(), &mut body);
@@ -97,6 +141,9 @@ pub struct LobbyPolicies {
     pub search_platform: SearchPlatform,
     pub search_distance: SearchDistance,
     pub advertise_platform: AdvertisePlatform,
+    pub cloud_downloads: CloudDownloads,
+    pub stats_store: StatsStore,
+    pub login_os: LoginOs,
 }
 
 pub fn relay(ps3: TcpStream, auth: &Authorization, deadline: Instant) -> io::Result<()> {
@@ -131,6 +178,9 @@ pub fn relay_with_search_policies(
             search_platform,
             search_distance,
             advertise_platform: AdvertisePlatform::Preserve,
+            cloud_downloads: CloudDownloads::Preserve,
+            stats_store: StatsStore::Preserve,
+            login_os: LoginOs::Windows,
         },
     )
 }
@@ -180,11 +230,13 @@ fn relay_connected(
         &clear,
         &auth.account_name,
         &auth.refresh_token,
+        policies.login_os,
     )?);
     channel::send_frame(&mut steam, &upstream.encode(&translated), deadline)?;
     event(
         "login_translated",
-        json!({"emsg":5514,"psn_fields_forwarded":false,"steam_token_downstream":false}),
+        json!({"emsg":5514,"psn_fields_forwarded":false,"steam_token_downstream":false,
+               "ps3_client_os_type":original_os_type(&clear),"login_os":policies.login_os.name()}),
     );
     drop(clear);
     drop(translated);
@@ -233,6 +285,9 @@ fn relay_connected(
                             "lobby_publication_diagnostic",
                             json!({"direction":"client","summary":summary}),
                         );
+                    }
+                    if let Some(summary) = crate::cloud_diagnostics::summarize(&message, "client") {
+                        event("cloud_diagnostic", summary);
                     }
                     if let Some(summary) = crate::lobby_diagnostics::summarize(&message) {
                         event(
@@ -332,6 +387,29 @@ fn relay_connected(
                     event("server_message_suppressed", json!({"emsg":id}));
                     message.zeroize();
                     continue;
+                }
+                if let Some(summary) = crate::cloud_diagnostics::summarize(&message, "server") {
+                    event("cloud_diagnostic", summary);
+                }
+                match cloud::adapt(&message, policies.cloud_downloads)? {
+                    cloud::Action::Forward => {}
+                    cloud::Action::Replace(rewritten, audit) => {
+                        event("cloud_download_policy", audit);
+                        message.zeroize();
+                        message = rewritten;
+                    }
+                    cloud::Action::Drop(audit) => {
+                        event("cloud_download_policy", audit);
+                        message.zeroize();
+                        continue;
+                    }
+                }
+                if let Some((rewritten, audit)) =
+                    crate::stats::adapt(&message, policies.stats_store)
+                {
+                    event("stats_store_policy", audit);
+                    message.zeroize();
+                    message = rewritten;
                 }
                 if message.len() >= 8 && message[3] & 128 != 0 {
                     let (id, h, b) = p::proto(&message)?;

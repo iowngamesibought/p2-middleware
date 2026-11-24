@@ -1,5 +1,71 @@
 # Current state
 
+## Latest: PS3-only stats rejected for a Windows session; login OS experiment (2026-11-24)
+
+Second PS3 log (accept-local active): the PS3 stored 13 stats at login, including
+the progress bitfields PS3.bitfield_01_004/008/018/020 and 02_00C/010 (5001-5009)
+and PS3.GAME.stat_* (5200-5202). Steam returned eresult 8 and reverted every
+changed one; accept-local reported success to the PS3. The decoded schema shows
+62 of 120 stats are `PS3.*` with `platform_access 8`, and every reverted stat is
+one of them; the matching PC stats (6xxx) carry no platform_access. The translated
+logon reports client_os_type 20 (Windows 11). Hypothesis (unproven): Steam refuses
+writes to PS3-only stats from a session it sees as Windows. No UFS reply again.
+
+New opt-in `serve --login-os windows|ps3` (default windows everywhere; desktop
+`report_ps3_os = true` or router-bridge.py `--login-os ps3`) sends EOSType -300.
+`login_translated` now records the PS3's own client_os_type. Encoding checked in a
+scratch crate; clippy clean. Not run against Steam or the PS3 yet; Steam may
+refuse the login or treat a PS3 session differently in lobbies.
+
+## Latest: stats rejection found; accept-local stats policy (2026-11-24, untested on PS3)
+
+First diagnostic log from the PS3 (desktop app, block mode): the PS3 sent
+ClientUFSGetFileListForApp (5206) six times and Steam never answered, so no cloud
+download was ever blocked and UFS is ruled out as the revert path for that run.
+Right after login the PS3 read stats (818/819, eresult 1, 66 stats) and then stored
+three (5466: 5200=16277, 5201=968, 5202=1314). Steam answered 821 with eresult 8
+and `stats_failed_validation` reverting them to the server values (10433, 531,
+1122). The cause of the rejection is not yet known.
+
+New `stats.rs`, `serve --stats-store preserve|accept-local` (CLI default
+`preserve`; desktop setting `keep_local_stats` and router-bridge.py default to
+accept-local): a failed 821 is rewritten to eresult 1 with game_id, crc and
+job id kept, and a `stats_store_policy` event records Steam's original result and
+reverted values. Steam's stored values are not changed. User-confirmed on the PS3
+(2026-11-24, desktop app, Windows login OS): progress kept across a reconnect. The 819 diagnostic now
+also decodes the binary KeyValues stats schema (non-English strings dropped) to
+show each stat's name and rules. Checked only against the observed 821 values and
+a hand-built schema in a scratch crate; clippy clean. Not run on the PS3 yet.
+
+## Latest: cloud/stats diagnostics and desktop log file (2026-11-24, untested on PS3)
+
+User reported the PS3 save still reverts with `block` enabled; the root cause is
+unknown. It is unknown whether the PS3 uses UFS at all, or whether progress lives
+in Steam user stats. New read-only `cloud_diagnostics.rs` emits `cloud_diagnostic`
+events in both directions for all UFS EMsgs (5200-5299), user stats (818-821,
+5466, 5467, 5480) and service methods (146/147/151/152, job name + size only).
+Protobuf bodies are dumped as field trees; SteamID-shaped values are redacted,
+opaque bytes become length + SHA-1 prefix, the UFS login request body is withheld,
+and legacy bodies are hex (capped at 1 KiB, individual SteamIDs overwritten).
+The desktop app now writes every bridge event line to
+`<app folder>\logs\bridge-<unix>.jsonl` (fallback `%LOCALAPPDATA%\P2Middleware\logs`,
+capped at 256 MiB) and briefly shows the path in its status line; router-bridge.py prints the new events. `cargo clippy
+--workspace --locked` is clean; the decoder was checked only against hand-built
+messages in a scratch crate (no repo tests). No PS3 RUN.
+
+## Latest: Steam Cloud download blocking (2026-11-23, untested on PS3)
+
+New `crates/bridge-core/src/cloud.rs`, enabled by `serve --cloud-downloads block`
+(CLI default `preserve`). The desktop setting `block_cloud_downloads` defaults to
+true; `router-bridge.py` blocks unless `--allow-cloud-downloads` is given. Steam ->
+PS3 only: UFS file list responses (5207) lose every `files` entry, download and
+single-file-info responses (5211, 5231) are answered with eResult 9 (FileNotFound),
+download chunks (5212) and any non-protobuf form of these messages are dropped.
+PS3 -> Steam traffic, including uploads, is unchanged. Each action logs a
+`cloud_download_policy` event. Only the new module was compiled and unit-tested in
+isolation; the full workspace was not built (offline, no vendored crates) and no
+PS3 RUN was made. It is unproven that the PS3 uses UFS EMsgs for its cloud sync.
+
 ## Latest: v0.1.0 public release candidate (2026-10-26, not published)
 
 User confirmed PS3-PC co-op with the desktop app using a Steam friend invite, then
